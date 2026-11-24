@@ -2,10 +2,8 @@
 
 An online clothing store for Bangladeshi fashion, built with plain PHP, MySQL and AJAX in an MVC folder structure. Customers browse, search, pick a size and place orders. Admins manage products, customers and order approvals.
 
-> Built as a team project for a Web Technologies course. **My part:** _write here what you personally built, for example "authentication, cart and checkout, admin order approval"._
 
-**Live demo:** _add your link here_  
-**Screenshots:** _add 3 or 4 images here, for example home page, product page, cart, admin orders_
+**Live demo:** 
 
 ## Features
 
