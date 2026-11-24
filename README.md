@@ -3,7 +3,7 @@
 An online clothing store for Bangladeshi fashion, built with plain PHP, MySQL and AJAX in an MVC folder structure. Customers browse, search, pick a size and place orders. Admins manage products, customers and order approvals.
 
 
-**Live demo:** 
+**Live demo:** https://deshidrip.infinityfreeapp.com
 
 ## Features
 
