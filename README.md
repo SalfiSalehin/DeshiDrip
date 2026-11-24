@@ -94,15 +94,6 @@ The default database login in `config/db.php` is user `root` with an empty passw
 
 Change these passwords on any public deployment.
 
-## Deploy on free PHP hosting
-
-1. Create a MySQL database in the host's control panel.
-2. Import `database/clothing_brand_hosting.sql` in phpMyAdmin (it has no `CREATE DATABASE` line).
-3. Copy `config/db.local.example.php` to `config/db.local.php` and fill in the host, user, password and database name. This file is git-ignored.
-4. Upload the project files into the site's `htdocs` folder.
-
-Password reset links are shown on screen for customer accounts while `$resetDemoMode = true` (the default), because free hosts rarely send email. Set it to `false` once the host can send mail.
-
 ## Project structure
 
 ```
