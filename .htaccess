@@ -1,4 +1,4 @@
 # Block direct download of SQL dumps and notes.
-<FilesMatch "\.(sql|txt|md)$">
+<FilesMatch "\.(sql|txt|md|json)$">
     Require all denied
 </FilesMatch>

@@ -1,0 +1,53 @@
+name: Deploy to InfinityFree
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+
+      - name: Write the database config from secrets
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASS: ${{ secrets.DB_PASS }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+        run: |
+          python3 - <<'PY'
+          import os
+          def q(v):
+              return "'" + v.replace("\\", "\\\\").replace("'", "\\'") + "'"
+          lines = [
+              "<?php",
+              "$host = " + q(os.environ["DB_HOST"]) + ";",
+              "$user = " + q(os.environ["DB_USER"]) + ";",
+              "$password = " + q(os.environ["DB_PASS"]) + ";",
+              "$database = " + q(os.environ["DB_NAME"]) + ";",
+              "$resetDemoMode = true;",
+              "ini_set('display_errors', '0');",
+              "",
+          ]
+          open("config/db.local.php", "w").write("\n".join(lines))
+          PY
+
+      - name: Upload to InfinityFree over FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ftpupload.net
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./
+          server-dir: /htdocs/
+          exclude: |
+            .git/**
+            .github/**
+            .gitignore
+            README.md
+            screenshots/**
+            database/**
